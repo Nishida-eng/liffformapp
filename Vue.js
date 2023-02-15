@@ -8,7 +8,7 @@ new Vue({
   },
   mounted () {
     fetch(
-      'https://script.google.com/macros/s/AKfycbxP5p9lHBQym_GAxp-vqfwLzjFkBc12kQOIJHuH61RWRVo35Xq1xxgzN4l3uOzsTS3V/exec',
+      'https://script.google.com/macros/s/AKfycbxP5p9lHBQym_GAxp-vqfwLzjFkBc12kQOIJHuH61RWRVo35Xq1xxgzN4l3uOzsTS3V/exec'
     )
       .then(res => res.json())
       .then(
