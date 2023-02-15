@@ -24,12 +24,32 @@
         </div>
         <input type="submit" class="mt-4 btn btn-primary" value="登録">
     </form>
-
+    <div id="app">
+        <h1>{{ message }}</h1>
+        <div class="books">
+      
+          <div class="book" v-for="book in books">
+            <div class="info">
+              <div class="title"><i class="book icon"></i> {{book.title}}</div>
+              <div class="review">{{book.review}}</div>
+            </div>
+            <div class="rate">
+              <div class="ui statistics">
+                <div class="statistic">
+                  <div class="value"><i class="star icon"></i> {{book.rate}} </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+    <script src="https://nishida-eng.github.io/liffformapp/Vue.js"></script>
     <script>
 
         $(document).ready(function () {
