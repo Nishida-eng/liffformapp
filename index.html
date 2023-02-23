@@ -76,10 +76,10 @@
         });
 
         // 1. Google Sheets APIの認証キーを生成
-        const apiKey = "14yb2yq_kH041jo2ww3ulaGK3wmCRUEJSk4HvpsDPXkIrxkDkGoWtMt8C";
+        const apiKey = "AIzaSyDd1F96wh0FZM8EGVwOU8jcq_Yx6OmbR5Q";
 
         // 2. Google Sheets APIを呼び出し、データを取得
-        const spreadsheetId = "1ktJnQfUojIlB6ygw-KipukD7TWuRjgIp3_20da3_HqU/";
+        const spreadsheetId = "1ktJnQfUojIlB6ygw-KipukD7TWuRjgIp3_20da3_HqU";
         const sheetName = "営業さんList";
         const range = "B2:B"; // 取得する範囲を指定
         const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}!${range}?key=${apiKey}`;
