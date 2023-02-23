@@ -16,7 +16,10 @@
         </div>
         <p class="mt-3">営業さん</p>
         <div>
-            <input class="form-control w-100 mt-1" name="eigyou" required>
+            <!-- <input class="form-control w-100 mt-1" name="eigyou" required> -->
+            <select id="dropdown">
+                <option value="">選択してください</option>
+            </select>
         </div>
         <p class="mt-3">葬家名</p>
         <div>
@@ -24,32 +27,12 @@
         </div>
         <input type="submit" class="mt-4 btn btn-primary" value="登録">
     </form>
-    <div id="app">
-        <h1>{{ message }}</h1>
-        <div class="books">
-      
-          <div class="book" v-for="book in books">
-            <div class="info">
-              <div class="title"><i class="book icon"></i> {{book.No}}</div>
-              <div class="review">{{book.name}}</div>
-            </div>
-            <div class="rate">
-              <div class="ui statistics">
-                <div class="statistic">
-                  <div class="value"><i class="star icon"></i> {{book.pos}} </div>
-                </div>
-              </div>
-            </div>
-          </div>
-      
-        </div>
-    </div>
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
-    <script src="https://nishida-eng.github.io/liffformapp/Vue.js"></script>
     <script>
 
         $(document).ready(function () {
@@ -92,6 +75,28 @@
             });
         });
 
+        // 1. Google Sheets APIの認証キーを生成
+        const apiKey = "14yb2yq_kH041jo2ww3ulaGK3wmCRUEJSk4HvpsDPXkIrxkDkGoWtMt8C";
+
+        // 2. Google Sheets APIを呼び出し、データを取得
+        const spreadsheetId = "1ktJnQfUojIlB6ygw-KipukD7TWuRjgIp3_20da3_HqU/";
+        const sheetName = "営業さんList";
+        const range = "B2:B"; // 取得する範囲を指定
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}!${range}?key=${apiKey}`;
+
+        fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            // 3. 取得したデータを使用して、ドロップダウンリストのリストを作成
+            const dropdown = document.getElementById("dropdown");
+            data.values.forEach(value => {
+            const option = document.createElement("option");
+            option.value = value[0];
+            option.text = value[0];
+            dropdown.add(option);
+            });
+        })
+        .catch(error => console.error(error));
     </script>
 
 </body>
