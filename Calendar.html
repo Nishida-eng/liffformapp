@@ -1,0 +1,143 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>実績登録</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
+
+   <script src="https://apis.google.com/js/api.js"></script>
+    <script>
+      function init() {
+        gapi.client.init({
+          'apiKey': 'AIzaSyDd1F96wh0FZM8EGVwOU8jcq_Yx6OmbR5Q',
+          'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'],
+        }).then(function() {
+          // カレンダーIDを設定
+          var calendarId = 'nishidaken0126@gmail.com';
+  
+          // カレンダーからイベントを取得する
+          gapi.client.calendar.events.list({
+            'calendarId': calendarId,
+            'timeMin': (new Date()).toISOString(),
+            'showDeleted': false,
+            'singleEvents': true,
+            'maxResults': 10,
+            'orderBy': 'startTime'
+          }).then(function(response) {
+            var events = response.result.items;
+            // 取得したイベントをHTMLに表示する
+            var eventList = document.getElementById('event-list');
+            events.forEach(function(event) {
+              var when = event.start.dateTime;
+              if (!when) {
+                when = event.start.date;
+              }
+              var eventItem = document.createElement('li');
+              eventItem.innerHTML = event.summary + ' (' + when + ')';
+              eventList.appendChild(eventItem);
+            });
+          });
+        });
+      }
+      gapi.load('client', init);
+    </script>
+</head>
+<body>
+
+    <form class="w-75 mx-auto">
+        <p class="mt-3">施術日</p>
+        <div>
+            <input class="form-control w-100 mt-1" name="sejutubi" placeholder="" required>
+        </div>
+        <p class="mt-3">営業さん</p>
+        <div>
+            <!-- <input class="form-control w-100 mt-1" name="eigyou" required> -->
+            <select id="dropdown" class="form-control w-100 mt-1" >
+                <option value="">選択してください</option>
+            </select>
+        </div>
+        <p class="mt-3">葬家名</p>
+        <div>
+            <input class="form-control w-100 mt-1" name="soukemei" required>
+        </div>
+        <input type="submit" class="mt-4 btn btn-primary" value="登録">
+    </form>
+
+        <iframe src="https://calendar.google.com/calendar/embed?height=400&wkst=1&bgcolor=%23ffffff&ctz=Asia%2FTokyo&showTitle=0&showPrint=0&showCalendars=0&showTz=0&showTabs=1&showDate=1&showNav=1&src=bmlzaGlkYWtlbjAxMjZAZ21haWwuY29t&src=amEuamFwYW5lc2UjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23039BE5&color=%230B8043" style="border-width:0" width="400" height="400" frameborder="0" scrolling="no"></iframe>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+    <script>
+
+        $(document).ready(function () {
+            const liffId = "1657869121-Y8JVBPEM";
+            initializeLiff(liffId);
+        })
+
+        function initializeLiff(liffId) {
+            liff.init({
+                liffId: liffId
+            }).then(() => {
+                initializeApp();
+            }).catch((err) => {
+                console.log('LIFF Initialization failed ', err);
+            });
+        }
+
+        function sendText(text) {
+            liff.sendMessages([{
+                'type': 'text',
+                'text': text
+            }]).then(function () {
+                liff.closeWindow();
+            }).catch(function (error) {
+                window.alert('Failed to send message ' + error);
+            });
+        }
+
+        const params = (new URL(document.location)).searchParams;
+        const key = params.get('key');
+
+        $(function () {
+            $('form').submit(function () {
+                const sejutubi    = $('input[name="sejutubi"]').val();
+                const eigyou = $('input[name="eigyou"]').val();
+                const soukemei  = $('input[name="soukemei"]').val();
+                const msg = ` 施術日:${sejutubi}\n 営業さん：${eigyou}\n 葬家名：${soukemei}\n`;
+                sendText(msg);
+                return false;
+            });
+        });
+
+        // 1. Google Sheets APIの認証キーを生成
+        const apiKey = "AIzaSyDd1F96wh0FZM8EGVwOU8jcq_Yx6OmbR5Q";
+
+        // 2. Google Sheets APIを呼び出し、データを取得
+        const spreadsheetId = "1ktJnQfUojIlB6ygw-KipukD7TWuRjgIp3_20da3_HqU";
+        const sheetName = "営業さんList";
+        const range = "B2:B"; // 取得する範囲を指定
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}!${range}?key=${apiKey}`;
+
+        fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            // 3. 取得したデータを使用して、ドロップダウンリストのリストを作成
+            const dropdown = document.getElementById("dropdown");
+            data.values.forEach(value => {
+            const option = document.createElement("option");
+            option.value = value[0];
+            option.text = value[0];
+            dropdown.add(option);
+            });
+        })
+        .catch(error => console.error(error));
+    </script>
+
+</body>
+</html>
