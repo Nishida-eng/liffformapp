@@ -120,7 +120,8 @@
 
         $(function () {
             $('form').submit(function () {
-                const sejutubi    = $('input[name="sejutubi"]').val();
+                var timeinput = document.getElementById("time-input");
+                const sejutubi    = $('input[name="sejutubi"]').val()+" "+timeinput.value;
                 var dropdown = document.getElementById("dropdown");
                 const eigyou = dropdown.value;
                 const soukemei  = $('input[name="soukemei"]').val();
