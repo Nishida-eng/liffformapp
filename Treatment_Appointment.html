@@ -48,13 +48,12 @@
 <body>
 
     <form class="w-75 mx-auto">
-        <p class="mt-3">施術日</p>
+        <p class="mt-3">施術日時</p>
         <div>
-            <input type="date" value="{{ date }}" class="form-control w-100 mt-1" name="sejutubi" placeholder="" required><input type="time" id="time-input" name="time">
+            <input type="date" value="{{ date }}" class="form-control w-100 mt-1" name="sejutubi" placeholder="" required><input type="time" id="time-input" name="time" class="form-control w-100 mt-1" value="00:00">
         </div>
         <p class="mt-3">営業さん</p>
         <div>
-            <!-- <input class="form-control w-100 mt-1" name="eigyou" required> -->
             <select id="dropdown" class="form-control w-100 mt-1" name="eigyou" required>
                 <option value="" >選択してください</option>
             </select>
@@ -121,11 +120,9 @@
 
         $(function () {
             $('form').submit(function () {
-                var dropdown = document.getElementById("dropdown");
-                  // 選択された値を取得
-                const eigyou = dropdown.value;
                 const sejutubi    = $('input[name="sejutubi"]').val();
-                //const eigyou = $('option[name="eigyou"]').val();
+                var dropdown = document.getElementById("dropdown");
+                const eigyou = dropdown.value;
                 const soukemei  = $('input[name="soukemei"]').val();
                 const msg = ` 施術日:${sejutubi}\n 営業さん：${eigyou}\n 葬家名：${soukemei}\n`;
                 sendText(msg);
