@@ -193,6 +193,7 @@
             subject_option.text = value[0];
             dropdown_subject.add(subject_option);
             });
+            dropdown_subject.selectedIndex = 0;
         })
         .catch(error => console.error(error));
 
@@ -207,8 +208,8 @@
             const dropdown_money = document.getElementById("dropdown_money");
             data.values.forEach(value => {
             const money_option = document.createElement("option");
-            money_option.value = value[1];
-            money_option.text = value[1];
+            money_option.value = value[0];
+            money_option.text = value[0];
             dropdown_money.add(money_option);
             });
         })
@@ -225,8 +226,8 @@
             const dropdown_money_add = document.getElementById("dropdown_money_add");
             data.values.forEach(value => {
             const money_add_option = document.createElement("option");
-            money_add_option.value = value[1];
-            money_add_option.text = value[1];
+            money_add_option.value = value[0];
+            money_add_option.text = value[0];
             dropdown_money_add.add(money_add_option);
             });
         })
