@@ -160,8 +160,8 @@
         // 2. Google Sheets APIを呼び出し、データを取得
         const spreadsheetId = "1ktJnQfUojIlB6ygw-KipukD7TWuRjgIp3_20da3_HqU";
 
-        //---Googleスプレッドシートから【営業さんList】を取得して、ドロップダウンリストに追加---//
-        var sheetName = "営業さんList";
+        //---Googleスプレッドシートから【List_営業さん】を取得して、ドロップダウンリストに追加---//
+        var sheetName = "List_営業さん";
         var range = "B2:B"; // 取得する範囲を指定
         var url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}!${range}?key=${apiKey}`;
         fetch(url)
@@ -178,8 +178,8 @@
         })
         .catch(error => console.error(error));
 
-        //---Googleスプレッドシートから【種別】を取得して、ドロップダウンリストに追加---//
-        sheetName = "種別";
+        //---Googleスプレッドシートから【List_種別】を取得して、ドロップダウンリストに追加---//
+        sheetName = "List_種別";
         range = "A2:A"; // 取得する範囲を指定
         url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}!${range}?key=${apiKey}`;
         fetch(url)
@@ -197,8 +197,8 @@
         })
         .catch(error => console.error(error));
 
-        //---Googleスプレッドシートから【金額】を取得して、ドロップダウンリストに追加---//
-        sheetName = "金額";
+        //---Googleスプレッドシートから【List_金額】を取得して、ドロップダウンリストに追加---//
+        sheetName = "List_金額";
         range = "A2:A"; // 取得する範囲を指定
         url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}!${range}?key=${apiKey}`;
         fetch(url)
@@ -215,8 +215,8 @@
         })
         .catch(error => console.error(error));
 
-        //---Googleスプレッドシートから【加算金額】を取得して、ドロップダウンリストに追加---//
-        sheetName = "金額";
+        //---Googleスプレッドシートから【List_金額】を取得して、ドロップダウンリストに追加---//
+        sheetName = "List_金額";
         range = "B2:B"; // 取得する範囲を指定
         url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}!${range}?key=${apiKey}`;
         fetch(url)
