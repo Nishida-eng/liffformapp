@@ -162,7 +162,7 @@
 
         //---Googleスプレッドシートから【List_営業さん】を取得して、ドロップダウンリストに追加---//
         var sheetName = "List_営業さん";
-        var range = "B2:B"; // 取得する範囲を指定
+        var range = "D2:D"; // 取得する範囲を指定
         var url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}!${range}?key=${apiKey}`;
         fetch(url)
         .then(response => response.json())
