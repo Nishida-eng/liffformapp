@@ -8,13 +8,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
 </head>
 <body>
-    <div>
-        開始月：<input type="date" value="{{ date }}" class="form-control w-100 mt-1" name="sejutubi" placeholder="" required>
-        <iframe width="1077" height="495" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQNREcVzqy4DVAVAdGQiSv3Lzr3VNgAMn8SvGuvFyMBtDp_F_M26VD_Zajz_zxDWAT9rCY7acBsI6YM/pubchart?oid=1448086393&amp;format=interactive"></iframe>
-   </div>
-        <iframe width="1073" height="495" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQNREcVzqy4DVAVAdGQiSv3Lzr3VNgAMn8SvGuvFyMBtDp_F_M26VD_Zajz_zxDWAT9rCY7acBsI6YM/pubchart?oid=706052498&amp;format=interactive"></iframe>
-        <iframe width="961" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQNREcVzqy4DVAVAdGQiSv3Lzr3VNgAMn8SvGuvFyMBtDp_F_M26VD_Zajz_zxDWAT9rCY7acBsI6YM/pubchart?oid=945356184&amp;format=interactive"></iframe>
-        <iframe width="961" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQNREcVzqy4DVAVAdGQiSv3Lzr3VNgAMn8SvGuvFyMBtDp_F_M26VD_Zajz_zxDWAT9rCY7acBsI6YM/pubchart?oid=1755477248&amp;format=interactive"></iframe>
+    <div><!--月間の売上と件数-->
+        開始月：<input type="date" value="{{ date }}" class="form-control w-70 mt-1" name="monthSell" placeholder="" required>
+        <iframe width="350" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQNREcVzqy4DVAVAdGQiSv3Lzr3VNgAMn8SvGuvFyMBtDp_F_M26VD_Zajz_zxDWAT9rCY7acBsI6YM/pubchart?oid=706052498&amp;format=interactive"></iframe>
+    </div>
+    <div><!--日間の売上と件数-->
+        <iframe width="350" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQNREcVzqy4DVAVAdGQiSv3Lzr3VNgAMn8SvGuvFyMBtDp_F_M26VD_Zajz_zxDWAT9rCY7acBsI6YM/pubchart?oid=1448086393&amp;format=interactive"></iframe>
+    </div>
+    <div><!--月間の営業件数-->
+        <iframe width="350" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQNREcVzqy4DVAVAdGQiSv3Lzr3VNgAMn8SvGuvFyMBtDp_F_M26VD_Zajz_zxDWAT9rCY7acBsI6YM/pubchart?oid=945356184&amp;format=interactive"></iframe>
+    </div>
+    <div><!--日間の営業件数-->
+        <iframe width="350" height="500" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQNREcVzqy4DVAVAdGQiSv3Lzr3VNgAMn8SvGuvFyMBtDp_F_M26VD_Zajz_zxDWAT9rCY7acBsI6YM/pubchart?oid=1755477248&amp;format=interactive"></iframe>
+    </div>
     <script>
         var today = new Date();
         var month = today.getMonth() + 1;
